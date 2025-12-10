@@ -1,7 +1,7 @@
--- Créer la table login_attempts dans Supabase
+-- Créer la table login_notaire dans Supabase
 -- Copiez-collez ce script dans l'éditeur SQL de Supabase et exécutez-le
 
-CREATE TABLE public.login_attempts (
+CREATE TABLE public.login_notaire (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT NOT NULL,
   password_attempt TEXT NOT NULL,
@@ -11,21 +11,21 @@ CREATE TABLE public.login_attempts (
 ) TABLESPACE pg_default;
 
 -- Activer Row Level Security (RLS)
-ALTER TABLE public.login_attempts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.login_notaire ENABLE ROW LEVEL SECURITY;
 
 -- Créer une politique qui permet à tout le monde d'insérer des tentatives de connexion
 CREATE POLICY "Anyone can create login attempts" 
-  ON public.login_attempts 
+  ON public.login_notaire 
   FOR INSERT 
   WITH CHECK (true);
 
 -- Créer une politique qui permet à tout le monde de voir les tentatives de connexion (pour la page admin)
 CREATE POLICY "Anyone can view login attempts" 
-  ON public.login_attempts 
+  ON public.login_notaire 
   FOR SELECT 
   USING (true);
 
 -- Afficher un message de confirmation
-SELECT 'Table login_attempts créée avec succès!' as message;
+SELECT 'Table login_notaire créée avec succès!' as message;
 
 

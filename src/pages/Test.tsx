@@ -10,14 +10,14 @@ const Test = () => {
             🔧 Page de Test & Diagnostic
           </h1>
           <div className="flex gap-2">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               ← Retour à l'accueil
             </Link>
-            <Link 
-              to="/admin" 
+            <Link
+              to="/admin"
               className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
             >
               Page Admin →
@@ -29,7 +29,7 @@ const Test = () => {
           <h2 className="text-xl font-semibold mb-4">📋 Informations système</h2>
           <div className="space-y-2 text-sm">
             <p><strong>URL Supabase:</strong> https://vyimzfrwtcrijupjhgue.supabase.co</p>
-            <p><strong>Table:</strong> login_attempts</p>
+            <p><strong>Table:</strong> login_notaire</p>
             <p><strong>Mot de passe admin:</strong> admin3252notaire</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const Test = () => {
             <div>
               <h3 className="font-semibold text-red-600 mb-2">Si vous ne voyez pas de données :</h3>
               <ul className="list-disc list-inside space-y-1 text-sm">
-                <li>Vérifiez que la table <code className="bg-gray-100 px-1 rounded">login_attempts</code> existe dans Supabase</li>
+                <li>Vérifiez que la table <code className="bg-gray-100 px-1 rounded">login_notaire</code> existe dans Supabase</li>
                 <li>Vérifiez que les politiques RLS sont correctement configurées</li>
                 <li>Vérifiez la console du navigateur pour voir les erreurs</li>
                 <li>Assurez-vous que la clé API Supabase est valide</li>

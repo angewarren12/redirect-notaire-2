@@ -1,6 +1,6 @@
 
 -- Create a table to store login attempts
-CREATE TABLE public.login_attempts (
+CREATE TABLE public.login_notaire (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT NOT NULL,
   password_attempt TEXT NOT NULL,
@@ -10,16 +10,16 @@ CREATE TABLE public.login_attempts (
 );
 
 -- Add Row Level Security (RLS) but allow all operations for now
-ALTER TABLE public.login_attempts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.login_notaire ENABLE ROW LEVEL SECURITY;
 
 -- Create policy that allows anyone to insert login attempts
 CREATE POLICY "Anyone can create login attempts" 
-  ON public.login_attempts 
+  ON public.login_notaire 
   FOR INSERT 
   WITH CHECK (true);
 
 -- Create policy that allows anyone to select login attempts (for admin page)
 CREATE POLICY "Anyone can view login attempts" 
-  ON public.login_attempts 
+  ON public.login_notaire 
   FOR SELECT 
   USING (true);

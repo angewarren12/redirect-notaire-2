@@ -35,7 +35,7 @@ const Admin = () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from('login_attempts')
+        .from('login_notaire')
         .select('*')
         .order('attempted_at', { ascending: false });
 
@@ -97,7 +97,7 @@ const Admin = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="mb-4 text-sm text-gray-600">
             Total des tentatives: {loginAttempts.length}
           </div>
