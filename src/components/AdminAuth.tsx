@@ -11,7 +11,7 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onAuthenticated }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin3252notaire') {
+    if (password === 'admin322notaire') {
       onAuthenticated();
       setError('');
     } else {
